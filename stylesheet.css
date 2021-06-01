@@ -49,4 +49,17 @@ h2{
     padding: 0;
     color: darkgray;
 }
+
+.checked {
+    text-decoration: line-through;
+}
+
+#itemQnty {
+    width: 60px;
+}
+
+.textItem {
+    width: 250px;
+}
+
   

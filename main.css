@@ -1,0 +1,25 @@
+h2 {
+    color: green;
+    text-decoration: line-through;
+}
+
+.test {
+    color: aqua;
+    background-color: pink;
+}
+
+.checked {
+    text-decoration: line-through;
+}
+
+li {
+
+}
+
+.textItem {
+    padding-right: 50px;
+}
+
+#itemQnty {
+    width: 60px;
+}
