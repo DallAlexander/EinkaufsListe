@@ -29,7 +29,7 @@ h2{
 
 .input {
     width: 70%;
-    margin-left: 10%;
+    margin-left: 5%;
     border: 0;
     border-bottom: 2px solid;
     outline: 0;
@@ -41,7 +41,7 @@ h2{
 }
 
 .btnAdd{
-    width: 10%;
+    width: 5%;
     font-size: 20pt;
     border: 0;
     background-color: white;
@@ -62,4 +62,11 @@ h2{
     width: 250px;
 }
 
+img{
+    padding-left: 20px;
+}
+
+ul{
+    list-style-type: none;
+}
   
