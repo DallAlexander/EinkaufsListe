@@ -1,0 +1,72 @@
+body{
+    font-family: 'Roboto', sans-serif;
+    padding-left: 20%;
+    padding-right: 20%;
+    background-color: #eee;
+    margin: 0;
+}
+
+h1{
+    text-align: center;
+    margin: 0;
+}
+
+h2{
+    font-size: 16pt;
+}
+
+.bigElement{
+    margin-bottom: 2pt;
+    background-color: white;
+    padding: 15pt;
+    border-style: solid;
+    border: 0;
+    /*border-bottom: 1pt solid;
+    border-color: gray;*/
+    box-shadow: 0 4px 2px -2px gray;
+    border-radius: 4pt;
+}
+
+.input {
+    width: 70%;
+    margin-left: 5%;
+    border: 0;
+    border-bottom: 2px solid;
+    outline: 0;
+    font-size: 1.3rem;
+    color: grey;
+    padding: 7px 0;
+    background: transparent;
+    transition: border-color 0.2s;
+}
+
+.btnAdd{
+    width: 5%;
+    font-size: 20pt;
+    border: 0;
+    background-color: white;
+    cursor: pointer;
+    padding: 0;
+    color: darkgray;
+}
+
+.checked {
+    text-decoration: line-through;
+}
+
+#itemQnty {
+    width: 60px;
+}
+
+.textItem {
+    width: 250px;
+}
+
+img{
+    padding-left: 20px;
+}
+
+ul{
+    list-style-type: none;
+}
+  
