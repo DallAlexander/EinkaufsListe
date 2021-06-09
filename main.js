@@ -1,4 +1,4 @@
-function addItem(text = null, qnty = null, checked = false) {
+function addItem(dbentry = false, text = null, qnty = null, checked = false) {
     //"Abhaken" Button
     const check_button = document.createElement("img");
     check_button.src = 'checkmark.png';
@@ -60,16 +60,48 @@ function addItem(text = null, qnty = null, checked = false) {
         //Eintrag wird entfernt
         document.getElementById("ul1").removeChild(eintrag);
         //Datenbank-Stuff
+        post("delete", data1.textContent);
     }
 
     check_button.onclick = function() {
         //Eintrag wird abgehakt
         data1.classList.toggle('checked');
-        //Datenbank-Stuff
+        //Datenbank-Stuff 
+        var checked = 0
+        if(data1.classList.contains('checked'))
+        {
+            checked = 1;
+        }     
+        post("check", data1.textContent + "|" + checked);
     }
 
     if(checked)
     {
         data1.classList.add('checked');
     }
+
+    if(dbentry == false)
+    {
+        post("add", data1.textContent);  
+    }
+    
 }
+
+function post(name, value)
+{
+    var form = document.createElement("form");
+    form.method = 'post';
+    form.action = 'index.php';
+    form.target = "content";
+
+    var hiddenField = document.createElement("input");
+    hiddenField.type = 'hidden';
+    hiddenField.name = name;
+    hiddenField.value = value;
+
+    form.appendChild(hiddenField);
+
+    document.body.appendChild(form);
+    form.submit();
+}
+
