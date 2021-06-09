@@ -26,12 +26,13 @@
           <?php
             $GLOBALS['servername'] = "localhost"; 
             $GLOBALS['username'] = "root";
-            $GLOBALS['password'] = "root";
+            $GLOBALS['password'] = "";
 
             $returnValue = "<script type=\"text/javascript\">";
 
             try {
-              $conn = new PDO("mysql:host=" . $GLOBALS['servername'] . ";port=3306;dbname=einkaufsliste", $GLOBALS['username'], $GLOBALS['password']);
+              // Datenbankverbindung
+              $conn = new PDO("mysql:host=" . $GLOBALS['servername'] . ";port=3306;dbname=demo", $GLOBALS['username'], $GLOBALS['password']);
               // set the PDO error mode to exception
               $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
