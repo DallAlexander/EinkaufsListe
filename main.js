@@ -1,4 +1,4 @@
-function addItem(dbentry = false, text = null, qnty = null, checked = false) {
+function addItem(dbentry = false, text = null, qnty = null, checked = false, id=null) {
     //"Abhaken" Button
     const check_button = document.createElement("img");
     check_button.src = 'checkmark.png';
@@ -47,43 +47,55 @@ function addItem(dbentry = false, text = null, qnty = null, checked = false) {
     data3.appendChild(delete_button);
     row.appendChild(data3);
 
+    //Feld für die ID
+    var data4 = document.createElement("td");
+    if(id != null) {
+        data4.textContent = id;
+    }else {
+        data4.textContent = "-1";
+    }
+    data4.hidden = true;
+    row.appendChild(data4);
+
     table.appendChild(row);
     eintrag.appendChild(table);
 
-    document.getElementById("ul1").appendChild(eintrag);
-
-    //Eingaben zurücksetzen
-    eingabe.value = "";
-    anzahl.value = "1";
-
     delete_button.onclick = function() {
-        //Eintrag wird entfernt
-        document.getElementById("ul1").removeChild(eintrag);
-        //Datenbank-Stuff
-        post("delete", data1.textContent);
+        //Datenbankaufruf, dass der Eintrag gelöscht werden soll
+        post("delete", data4.textContent);
     }
 
     check_button.onclick = function() {
-        //Eintrag wird abgehakt
-        data1.classList.toggle('checked');
-        //Datenbank-Stuff 
-        var checked = 0
+        //Datenbankaufruf, dass der Eintrag abgehakt werden soll
+        var checked = 1
         if(data1.classList.contains('checked'))
         {
-            checked = 1;
+            checked = 0;
         }     
-        post("check", data1.textContent + "|" + checked);
-    }
-
-    if(checked)
-    {
-        data1.classList.add('checked');
+        post("check", data4.textContent + "|" + data1.textContent + "|" + checked);
     }
 
     if(dbentry == false)
     {
-        post("add", data1.textContent);  
+        //Damit keine Schleife entsteht, darf ein Datenbankeintrag nur erstellt werden, wenn der Eintrag vom Benutzer hinzugefügt wurde
+        //Das Element nur hinzufügen, wenn das Eingabefeld nicht leer ist
+        if(eingabe.value.length > 0)
+        {
+            post("add", data1.textContent);
+        }
+        
+    }else{
+        //Die Einträge aus der Datenbank werden hinzugefügt und wenn nötig abgehakt
+        document.getElementById("ul1").appendChild(eintrag);
+        if(checked)
+        {
+            data1.classList.add('checked');
+        }
     }
+
+    //Eingaben zurücksetzen
+    eingabe.value = "";
+    anzahl.value = "1";
     
 }
 
@@ -92,7 +104,6 @@ function post(name, value)
     var form = document.createElement("form");
     form.method = 'post';
     form.action = 'index.php';
-    form.target = "content";
 
     var hiddenField = document.createElement("input");
     hiddenField.type = 'hidden';
