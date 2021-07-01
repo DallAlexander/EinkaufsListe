@@ -2,8 +2,15 @@ body{
     font-family: 'Roboto', sans-serif;
     padding-left: 20%;
     padding-right: 20%;
-    background-color: #eee;
+    background-image: url('body_background.jpg');
     margin: 0;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+.heading{
+    margin-top: 2%;
 }
 
 h1{
@@ -16,25 +23,47 @@ h2{
 }
 
 .bigElement{
-    margin-bottom: 2pt;
+    margin-bottom: 4pt;
     background-color: white;
     padding: 15pt;
     border-style: solid;
     border: 0;
-    /*border-bottom: 1pt solid;
-    border-color: gray;*/
     box-shadow: 0 4px 2px -2px gray;
     border-radius: 4pt;
 }
+
+.table {
+    margin: 0 auto;
+    border-collapse: collapse;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    border-radius: 7px 5px 0 0;
+    overflow: hidden;
+}
+
+.table thead tr{
+    text-align: left;
+    background-color: rgb(33, 103, 182);
+}
+
+.table th,
+.table td {
+    padding: 12px 15px;
+}
+
+.table_bezeichnung{
+    width: 75%;
+}
+
 
 .input {
     width: 70%;
     margin-left: 5%;
     border: 0;
     border-bottom: 2px solid;
+    border-color: rgb(33, 103, 182);
     outline: 0;
     font-size: 1.3rem;
-    color: grey;
+    color: rgb(131, 131, 131);
     padding: 7px 0;
     background: transparent;
     transition: border-color 0.2s;
@@ -47,7 +76,7 @@ h2{
     background-color: white;
     cursor: pointer;
     padding: 0;
-    color: darkgray;
+    color: rgb(33, 103, 182);
 }
 
 .checked {
@@ -65,8 +94,3 @@ h2{
 img{
     padding-left: 20px;
 }
-
-ul{
-    list-style-type: none;
-}
-  

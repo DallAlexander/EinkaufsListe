@@ -14,43 +14,44 @@ function addItem(dbentry = false, text = null, qnty = null, checked = false) {
     //ListItem
     var eingabe = document.getElementById("Input1");
     var anzahl = document.getElementById("itemQnty");
-    var eintrag = document.createElement("li");
-    var table = document.createElement("table");
+    var table = document.getElementById("table");
     var row = document.createElement("tr");
 
     //Text aus dem Eingabefeld mit der Anzahl
-    var data1 = document.createElement("td");
+    var anzahl = document.createElement("td");
+    var anzahlStr = "";
+    if(qnty != null){
+        anzahlStr = qnty;
+    } else {
+        anzahlStr = anzahl.value;
+    }
+    anzahl.textContent = anzahlStr;
+    anzahl.classList.add("textItem");
+    row.appendChild(anzahl);
 
-    var string = "";
-    if(qnty != null) {
-        string = qnty + "x";
-    }else {
-        string = anzahl.value + "x";
-    }
-    
+
+    var bezeichnung = document.createElement("td");
+    var bezeichnungStr = "";
     if(text != null) {
-        string = string + " " + text;
+        bezeichnungStr = text;
     }else {
-        string = string + " " + eingabe.value;
+        bezeichnungStr = eingabe.value;
     }
-    data1.textContent = string;
-    data1.classList.add("textItem");
-    row.appendChild(data1);
+    bezeichnung.textContent = bezeichnungStr;
+    bezeichnung.classList.add("textItem");
+    row.appendChild(bezeichnung);
 
     //Button zum Abhaken
-    var data2 = document.createElement("td");
-    data2.appendChild(check_button);
-    row.appendChild(data2);
+    var btnCheck = document.createElement("td");
+    btnCheck.appendChild(check_button);
+    row.appendChild(btnCheck);
 
     //Button zum Löschen
-    var data3 = document.createElement("td");
-    data3.appendChild(delete_button);
-    row.appendChild(data3);
+    var btnDelete = document.createElement("td");
+    btnDelete.appendChild(delete_button);
+    row.appendChild(btnDelete);
 
     table.appendChild(row);
-    eintrag.appendChild(table);
-
-    document.getElementById("ul1").appendChild(eintrag);
 
     //Eingaben zurücksetzen
     eingabe.value = "";
@@ -58,31 +59,33 @@ function addItem(dbentry = false, text = null, qnty = null, checked = false) {
 
     delete_button.onclick = function() {
         //Eintrag wird entfernt
-        document.getElementById("ul1").removeChild(eintrag);
+        table.removeChild(row);
+
         //Datenbank-Stuff
-        post("delete", data1.textContent);
+        post("delete", (anzahl.textContent + "x " + bezeichnung.textContent));
     }
 
     check_button.onclick = function() {
-        //Eintrag wird abgehakt
-        data1.classList.toggle('checked');
+        //Artikel wird abgehakt
+        bezeichnung.classList.toggle('checked');
         //Datenbank-Stuff 
         var checked = 0
-        if(data1.classList.contains('checked'))
+        if(bezeichnung.classList.contains('checked'))
         {
             checked = 1;
         }     
-        post("check", data1.textContent + "|" + checked);
+        post("check", anzahl.textContent + "x " + bezeichnung.textContent + "|" + checked);
+
     }
 
     if(checked)
     {
-        data1.classList.add('checked');
+        bezeichnung.classList.add('checked');
     }
 
     if(dbentry == false)
     {
-        post("add", data1.textContent);  
+        post("add", anzahl.textContent + "x " + bezeichnung.textContent);  
     }
     
 }
