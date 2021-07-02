@@ -3,12 +3,12 @@
 <?php
       $GLOBALS['servername'] = "localhost"; 
       $GLOBALS['username'] = "root";
-      $GLOBALS['password'] = "root";
+      $GLOBALS['password'] = "";
 
       if ($_SERVER["REQUEST_METHOD"] == "POST") {
         try{
           //Verbindung zur Datenbank herstellen
-          $conn = new PDO("mysql:host=" . $GLOBALS['servername'] . ";port=3306;dbname=einkaufsliste", $GLOBALS['username'], $GLOBALS['password']);
+          $conn = new PDO("mysql:host=" . $GLOBALS['servername'] . ";port=3306;dbname=demo", $GLOBALS['username'], $GLOBALS['password']);
           $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
           if(isset($_POST['add'])) {
@@ -64,6 +64,7 @@
 <body>
     <div class="bigElement heading">
         <h1>Die Einkaufsliste</h1>
+        <a href="logout.php" class="btn btn-secondary ml-2">Abmelden</a>
     </div>
     <div class="bigElement">
        <h2> Bitte Wert eingeben</h2>

@@ -21,7 +21,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     </style>
 </head>
 <body>
-    <div class="bigElement">
+    <div class="bigElement heading">
         <h1 class="my-5">Hi, <b><?php echo htmlspecialchars($_SESSION["username"]); ?></b>. Willkommen auf deiner Einkaufsliste.</h1>    
     </div>
     <div class="bigElement">

@@ -108,7 +108,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     </style>
 </head>
 <body>
-    <div class="bigElement">
+    <div class="bigElement heading">
         <h1>Registrieren</h1>
         <h2>Fülle dieses Formular aus, um dich zu registrieren.</h2>
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
@@ -129,7 +129,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             </div>
             <div class="form-group">
                 <input type="submit" class="btn btn-primary" value="Übermitteln">
-                <input type="reset" class="btn btn-secondary ml-2" value="Wiederherstellen">
             </div>
             <p>Du hast bereits einen Account? <a href="login.php">Melde dich an</a>.</p>
         </form>
