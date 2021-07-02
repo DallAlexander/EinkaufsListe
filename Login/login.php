@@ -21,14 +21,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
  
     // Überprüfen, ob das Benutzername-Feld leer ist
     if(empty(trim($_POST["username"]))){
-        $username_err = "Please enter username.";
+        $username_err = "Bitte Benutzername eingeben.";
     } else{
         $username = trim($_POST["username"]);
     }
     
     // Überprüfen, ob das Passwort-Feld leer ist
     if(empty(trim($_POST["password"]))){
-        $password_err = "Please enter your password.";
+        $password_err = "Bitte Passwort eingeben.";
     } else{
         $password = trim($_POST["password"]);
     }
