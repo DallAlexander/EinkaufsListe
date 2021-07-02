@@ -1,81 +1,82 @@
 <?php
-// Initialize the session
+// PHP-Session initialisieren
 session_start();
  
-// Check if the user is already logged in, if yes then redirect him to welcome page
+
+// Überprüfen ob der Benutzer schon eingeleggt ist, wenn ja dann zur Willkommen-Seite weiterleiten
 if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
     header("location: welcome.php");
     exit;
 }
  
-// Include config file
+// DB-Config einbeziehen
 require_once "config.php";
  
-// Define variables and initialize with empty values
+// Variablen definieren und initialisieren mit leeren Werten
 $username = $password = "";
 $username_err = $password_err = $login_err = "";
  
-// Processing form data when form is submitted
+// Verarbeitung von Formulardaten beim Absenden des Formulars
 if($_SERVER["REQUEST_METHOD"] == "POST"){
  
-    // Check if username is empty
+    // Überprüfen, ob das Benutzername-Feld leer ist
     if(empty(trim($_POST["username"]))){
         $username_err = "Please enter username.";
     } else{
         $username = trim($_POST["username"]);
     }
     
-    // Check if password is empty
+    // Überprüfen, ob das Passwort-Feld leer ist
     if(empty(trim($_POST["password"]))){
         $password_err = "Please enter your password.";
     } else{
         $password = trim($_POST["password"]);
     }
     
-    // Validate credentials
+    // Zugang überprüfen
     if(empty($username_err) && empty($password_err)){
-        // Prepare a select statement
+        // Select-Statement vorbereiten
         $sql = "SELECT id, username, password FROM users WHERE username = ?";
         
         if($stmt = mysqli_prepare($link, $sql)){
-            // Bind variables to the prepared statement as parameters
+            // Variablen als Parameter an das Select-Statement binden
             mysqli_stmt_bind_param($stmt, "s", $param_username);
             
-            // Set parameters
+            // Set Parameter
             $param_username = $username;
             
-            // Attempt to execute the prepared statement
+            // Versuch das Prepared Statement abzusetzen
             if(mysqli_stmt_execute($stmt)){
-                // Store result
+                // Ergebnis speichern
                 mysqli_stmt_store_result($stmt);
                 
-                // Check if username exists, if yes then verify password
+                // Überprüfen, ob der Benutzername existiert, wenn ja dann überprüfe Passwort
                 if(mysqli_stmt_num_rows($stmt) == 1){                    
-                    // Bind result variables
+                    // Ergebnis-Variablen binden
                     mysqli_stmt_bind_result($stmt, $id, $username, $hashed_password);
                     if(mysqli_stmt_fetch($stmt)){
                         if(password_verify($password, $hashed_password)){
-                            // Password is correct, so start a new session
+                            // Das Passwort ist korrekt, also starte eine PHP-Session
                             if(session_status() == PHP_SESSION_NONE) {
-                                // Session isn´t started yet
+                                // Sofern die PHP-Session noch nicht gestartet wurde
                                     session_start();
                                 }
                             
-                            // Store data in session variables
+                            // Credentials in die Sitzungsvariablen speichern
                             $_SESSION["loggedin"] = true;
                             $_SESSION["id"] = $id;
                             $_SESSION["username"] = $username;                            
                             
-                            // Redirect user to welcome page
+                            // Weiterleitung zur Willkommen-Seite
                             header("location: welcome.php");
                         } else{
-                            // Password is not valid, display a generic error message
-                            $login_err = "Invalid username or password.";
+                            // Wenn das Passwort nicht stimmt, Fehlermeldung anzeigen
+                            $login_err = "Ungültiger Benutzername oder Passowrt.";
                         }
                     }
                 } else{
-                    // Username doesn't exist, display a generic error message
-                    $login_err = "Invalid username or password.";
+                    // Wenn der Benutzer nicht existiert, Fehlermeldung anzeigen
+                    $login_err = "Ungültiger Benutzername oder Passowrt";
                 }
             } else{
                 echo "Oops! Something went wrong. Please try again later.";

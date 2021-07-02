@@ -1,37 +1,37 @@
 <?php
-// Include config file
+// DB-Config
 require_once "config.php";
 
 // Variablen definieren und mit leeren Werten initialisiert
 $username = $password = $confirm_password = "";
 $username_err = $password_err = $confirm_password_err = "";
 
-// Processing form data when form is submitted
+// Verarbeitung von Formulardaten beim Absenden des Formulars 
 if($_SERVER["REQUEST_METHOD"] == "POST"){
  
     // Validate username
     if(empty(trim($_POST["username"]))){
-        $username_err = "Please enter a username.";
+        $username_err = "Bitte Benutzername eintragen.";
     } elseif(!preg_match('/^[a-zA-Z0-9_]+$/', trim($_POST["username"]))){
-        $username_err = "Username can only contain letters, numbers, and underscores.";
+        $username_err = "Benutzername kann nur Buchstaben, Nummern und Unterstriche enthalten.";
     } else{
-        // Prepare a select statement
+        // Select-Statement vorbereiten
         $sql = "SELECT id FROM users WHERE username = ?";
         
         if($stmt = mysqli_prepare($link, $sql)){
-            // Bind variables to the prepared statement as parameters
+            // Variablen als Parameter an die vorbereitete Anweisung binden
             mysqli_stmt_bind_param($stmt, "s", $param_username);
             
-            // Set parameters
+            // Parameter zum Setzen
             $param_username = trim($_POST["username"]);
             
-            // Attempt to execute the prepared statement
+            // Versuch die vorbereitete Anwensung auszuführen
             if(mysqli_stmt_execute($stmt)){
-                /* store result */
+                /* Ergebnis speichern */
                 mysqli_stmt_store_result($stmt);
                 
                 if(mysqli_stmt_num_rows($stmt) == 1){
-                    $username_err = "This username is already taken.";
+                    $username_err = "Dieser Benutzername ist bereits in Verwendung.";
                 } else{
                     $username = trim($_POST["username"]);
                 }
@@ -39,23 +39,23 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 echo "Oops! Something went wrong. Please try again later.";
             }
 
-            // Close statement
+            // Statement schließen
             mysqli_stmt_close($stmt);
         }
     }
     
-    // Validate password
+    // Passwort validieren
     if(empty(trim($_POST["password"]))){
-        $password_err = "Please enter a password.";     
+        $password_err = "Bitte ein Passwort eintragen.";     
     } elseif(strlen(trim($_POST["password"])) < 6){
-        $password_err = "Password must have atleast 6 characters.";
+        $password_err = "Passwort muss sechs Zeichen haben.";
     } else{
         $password = trim($_POST["password"]);
     }
     
     // Validate confirm password
     if(empty(trim($_POST["confirm_password"]))){
-        $confirm_password_err = "Please confirm password.";     
+        $confirm_password_err = "Bitte Passwort bestätigen.";     
     } else{
         $confirm_password = trim($_POST["confirm_password"]);
         if(empty($password_err) && ($password != $confirm_password)){
