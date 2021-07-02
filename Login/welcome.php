@@ -9,22 +9,27 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 }
 ?>
  
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Welcome</title>
+    <title>Willkommen</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="stylesheet.css">
     <style>
         body{ font: 14px sans-serif; text-align: center; }
     </style>
 </head>
 <body>
-    <h1 class="my-5">Hi, <b><?php echo htmlspecialchars($_SESSION["username"]); ?></b>. Willkommen auf deiner Einkaufsliste.</h1>
-    <p>
-        <a href="reset-password.php" class="btn btn-warning">Passwort zurücksetzen</a>
+    <div class="bigElement">
+        <h1 class="my-5">Hi, <b><?php echo htmlspecialchars($_SESSION["username"]); ?></b>. Willkommen auf deiner Einkaufsliste.</h1>    
+    </div>
+    <div class="bigElement">
         <a href="logout.php" class="btn btn-danger ml-3">Abmelden</a>
-        <a href="index.html" class="btn btn-info">Zur Einkaufsliste fortfahren</a>
+        <a href="index.php" class="btn btn-info">Zur Einkaufsliste fortfahren</a>
+    </div> 
+    <p>
+
     </p>
 </body>
 </html>

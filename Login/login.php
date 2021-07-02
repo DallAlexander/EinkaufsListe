@@ -95,17 +95,18 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Login</title>
+    <title>Anmeldung</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="stylesheet.css">
     <style>
         body{ font: 14px sans-serif; }
         .wrapper{ width: 360px; padding: 20px; }
     </style>
 </head>
 <body>
-    <div class="wrapper">
-        <h2>Login</h2>
-        <p>Bitte gebe deine Anmeldedaten an, um dich anzumelden</p>
+    <div class="bigElement">
+        <h1>Login</h1>
+        <h2>Bitte gebe deine Anmeldedaten an, um dich anzumelden</h2>
 
         <?php 
         if(!empty($login_err)){

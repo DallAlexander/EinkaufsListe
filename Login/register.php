@@ -1,11 +1,11 @@
 <?php
 // Include config file
 require_once "config.php";
- 
-// Define variables and initialize with empty values
+
+// Variablen definieren und mit leeren Werten initialisiert
 $username = $password = $confirm_password = "";
 $username_err = $password_err = $confirm_password_err = "";
- 
+
 // Processing form data when form is submitted
 if($_SERVER["REQUEST_METHOD"] == "POST"){
  
@@ -95,21 +95,22 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 }
 ?>
  
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Sign Up</title>
+    <title>Registrierung</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="stylesheet.css">
     <style>
         body{ font: 14px sans-serif; }
         .wrapper{ width: 360px; padding: 20px; }
     </style>
 </head>
 <body>
-    <div class="wrapper">
-        <h2>Registrieren</h2>
-        <p>Fülle dieses Formular aus, um dich zu registrieren.</p>
+    <div class="bigElement">
+        <h1>Registrieren</h1>
+        <h2>Fülle dieses Formular aus, um dich zu registrieren.</h2>
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
             <div class="form-group">
                 <label>Benutzername</label>
