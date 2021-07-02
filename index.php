@@ -24,7 +24,7 @@
 
           }else if(isset($_POST['check'])) {
             //Ein Eintrag in der Datenbank soll abgehakt oder nicht-abgehakt werden
-            //POST in der Form: "[ID]|[Anzahl]x [Bezeichnung]|[Checked]"
+            //POST in der Form: "[ID]|[Checked]"
             $explodedString1 = explode("|", $_POST['check']);
             $flagged = $explodedString1[1];
             $id = $explodedString1[0];
