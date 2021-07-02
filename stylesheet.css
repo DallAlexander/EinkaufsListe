@@ -54,6 +54,10 @@ h2{
     width: 75%;
 }
 
+.table tr:hover{
+    background-color: lightgray;
+}
+
 
 .input {
     width: 70%;
