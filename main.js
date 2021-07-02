@@ -1,4 +1,4 @@
-function addItem(dbentry = false, text = null, qnty = null, checked = false) {
+function addItem(dbentry = false, text = null, qnty = null, checked = false, id=null) {
     //"Abhaken" Button
     const check_button = document.createElement("img");
     check_button.src = 'checkmark.png';
@@ -14,21 +14,19 @@ function addItem(dbentry = false, text = null, qnty = null, checked = false) {
     //ListItem
     var eingabe = document.getElementById("Input1");
     var anzahl = document.getElementById("itemQnty");
-    var table = document.getElementById("table");
     var row = document.createElement("tr");
 
     //Text aus dem Eingabefeld mit der Anzahl
-    var anzahl = document.createElement("td");
+    var fieldAnzahl = document.createElement("td");
     var anzahlStr = "";
     if(qnty != null){
         anzahlStr = qnty;
     } else {
         anzahlStr = anzahl.value;
     }
-    anzahl.textContent = anzahlStr;
-    anzahl.classList.add("textItem");
-    row.appendChild(anzahl);
-
+    fieldAnzahl.textContent = anzahlStr;
+    fieldAnzahl.classList.add("textItem");
+    row.appendChild(fieldAnzahl);
 
     var bezeichnung = document.createElement("td");
     var bezeichnungStr = "";
@@ -51,43 +49,50 @@ function addItem(dbentry = false, text = null, qnty = null, checked = false) {
     btnDelete.appendChild(delete_button);
     row.appendChild(btnDelete);
 
-    table.appendChild(row);
-
-    //Eingaben zurücksetzen
-    eingabe.value = "";
-    anzahl.value = "1";
+    //Feld für die ID
+    var fieldId = document.createElement("td");
+    if(id != null) {
+        fieldId.textContent = id;
+    }else {
+        fieldId.textContent = "-1";
+    }
+    fieldId.hidden = true;
+    row.appendChild(fieldId);
 
     delete_button.onclick = function() {
-        //Eintrag wird entfernt
-        table.removeChild(row);
-
-        //Datenbank-Stuff
-        post("delete", (anzahl.textContent + "x " + bezeichnung.textContent));
+        //Datenbankaufruf, dass der Eintrag gelöscht werden soll
+        post("delete", fieldId.textContent);
     }
 
     check_button.onclick = function() {
-        //Artikel wird abgehakt
-        bezeichnung.classList.toggle('checked');
-        //Datenbank-Stuff 
-        var checked = 0
+        //Datenbankaufruf, dass der Eintrag abgehakt werden soll
+        var checked = 1
         if(bezeichnung.classList.contains('checked'))
         {
-            checked = 1;
+            checked = 0;
         }     
-        post("check", anzahl.textContent + "x " + bezeichnung.textContent + "|" + checked);
-
-    }
-
-    if(checked)
-    {
-        bezeichnung.classList.add('checked');
+        post("check", fieldId.textContent + "|" + checked);
     }
 
     if(dbentry == false)
     {
-        post("add", anzahl.textContent + "x " + bezeichnung.textContent);  
+        //Damit keine Schleife entsteht, darf ein Datenbankeintrag nur erstellt werden, wenn der Eintrag vom Benutzer hinzugefügt wurde
+        //Das Element nur hinzufügen, wenn das Eingabefeld nicht leer ist
+        if(eingabe.value.length > 0)
+        {
+            post("add", fieldAnzahl.textContent + "x " + bezeichnung.textContent);
+        }
+    }else {
+        document.getElementById("table").appendChild(row);
+        if(checked)
+        {
+            bezeichnung.classList.add('checked');
+        }
     }
-    
+
+    //Eingaben zurücksetzen
+    eingabe.value = "";
+    anzahl.value = "1";
 }
 
 function post(name, value)
@@ -95,7 +100,6 @@ function post(name, value)
     var form = document.createElement("form");
     form.method = 'post';
     form.action = 'index.php';
-    form.target = "content";
 
     var hiddenField = document.createElement("input");
     hiddenField.type = 'hidden';
