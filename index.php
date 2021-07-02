@@ -11,7 +11,7 @@
     <script type="text/javascript" src="main.js"></script>
 </head>
 <body>
-    <div class="bigElement">
+    <div class="bigElement heading">
         <h1>Die Einkaufsliste</h1>
     </div>
     <div class="bigElement">
@@ -21,12 +21,20 @@
        <button id="btn1" class="btnAdd" onclick="addItem()">+</button>
    </div> 
    <div class="bigElement">
-       <ul class="list" id="ul1">
-
-          <?php
+       <table class="table" id="table">
+        <thead>
+            <tr>
+              <th>Anzahl</th>
+              <th class="table_bezeichnung">Bezeichnung</th>
+              <th>abhaken</th>
+              <th>löschen</th>
+            </tr>
+        </thead>
+        <tbody>
+        <?php
             $GLOBALS['servername'] = "localhost"; 
             $GLOBALS['username'] = "root";
-            $GLOBALS['password'] = "root";
+            $GLOBALS['password'] = "Passwort123!";
 
             $returnValue = "<script type=\"text/javascript\">";
 
@@ -56,8 +64,8 @@
               echo "Datenbankverbindung fehlgeschlagen: " . $e->getMessage();
             }
             ?>
-
-       </ul>
+        </tbody>
+       </table>
    </div>
     
 </body>
