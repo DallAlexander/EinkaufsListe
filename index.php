@@ -15,6 +15,9 @@
         <h1>Die Einkaufsliste</h1>
     </div>
     <div class="bigElement">
+        <a href="logout.php" class="btn btn-danger ml-3">Abmelden</a>
+    </div>
+    <div class="bigElement">
        <h2> Bitte Wert eingeben</h2>
        <input type="number" id="itemQnty" class="input" min="1" max="99" value="1" placeholder="Anzahl">
        <input type="text" id="Input1" class="input" maxlength="33">
