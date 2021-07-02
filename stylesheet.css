@@ -1,0 +1,129 @@
+body{
+    font-family: 'Roboto', sans-serif;
+    padding-left: 10%;
+    padding-right: 10%;
+    background-color: rgba(238, 238, 238, 0.788);
+    margin: 10;
+}
+
+h1{
+    text-align: center;
+    margin: 10;
+    font-size: 32pt; 
+    /* color: green ; */
+
+}
+
+h2{
+    font-size: 18pt;
+    text-align: center;
+}
+
+.bigElement{
+    margin-bottom: 2pt;
+    background-color: white;
+    padding: 15pt;
+    border-style: solid;
+    border: 0;
+    /*border-bottom: 1pt solid;
+    border-color: gray;*/
+    box-shadow: 0 4px 2px -2px gray;
+    border-radius: 4pt;
+}
+
+.input {
+    width: 70%;
+    margin-left: 5%;
+    border: 0;
+    border-bottom: 2px solid;
+    outline: 0;
+    font-size: 1.3rem;
+    color: grey;
+    padding: 7px 0;
+    background: transparent;
+    transition: border-color 0.2s;
+}
+
+.btnAdd{
+     width: 5%;
+    font-size: 50pt;
+    border: 0;
+    background-color: rgb(24, 189, 189);
+    cursor: pointer;
+    padding: 0;
+    color: rgb(248, 250, 248);
+
+}
+
+
+.btnAdd:hover {
+
+    animation-name: example;
+    animation-duration: 2s;
+
+
+
+}
+
+@keyframes example{
+
+    from {background-color: lightsalmon;}
+    to {background-color: mediumseagreen;}
+
+}
+
+
+
+
+.checked {
+    text-decoration: line-through;
+}
+
+
+
+#itemQnty {
+    width: 80px;
+}
+
+
+
+.textItem {
+    width: 250px;
+
+}
+
+.textItem:hover{
+    background-color: lightgrey;
+}
+
+
+
+img{
+    padding-left: 20px;
+}
+
+img:hover{
+
+    background-color: lightgrey;
+}
+
+
+
+ul{
+    list-style-type: none;
+    text-align: right;
+    font-size: 16pt; 
+}
+
+
+/* ul:hover{
+
+    background-color: lightgrey;
+} */
+
+li:hover{
+
+    background-color: lightgrey;
+}
+
+  
