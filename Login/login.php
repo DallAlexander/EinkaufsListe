@@ -105,7 +105,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     </style>
 </head>
 <body>
-    <div class="bigElement">
+    <div class="bigElement heading">
         <h1>Login</h1>
         <h2>Bitte gebe deine Anmeldedaten an, um dich anzumelden</h2>
 
