@@ -53,7 +53,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         $password = trim($_POST["password"]);
     }
     
-    // Validate confirm password
+    // Passwort bestätigen überprüfen
     if(empty(trim($_POST["confirm_password"]))){
         $confirm_password_err = "Bitte Passwort bestätigen.";     
     } else{
@@ -63,34 +63,34 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         }
     }
     
-    // Check input errors before inserting in database
+    // Insert-Fehler überprüfen, vor Abschluss der Transaktion
     if(empty($username_err) && empty($password_err) && empty($confirm_password_err)){
         
-        // Prepare an insert statement
+        // Insert-Statement vorbereiten
         $sql = "INSERT INTO users (username, password) VALUES (?, ?)";
          
         if($stmt = mysqli_prepare($link, $sql)){
-            // Bind variables to the prepared statement as parameters
+            // Variablen an das Prepared-Statement als Parameter binden
             mysqli_stmt_bind_param($stmt, "ss", $param_username, $param_password);
             
-            // Set parameters
+            // Parameter setzen
             $param_username = $username;
             $param_password = password_hash($password, PASSWORD_DEFAULT); // Creates a password hash
             
-            // Attempt to execute the prepared statement
+            // Versuch das Prepared-Statement abzusetzen
             if(mysqli_stmt_execute($stmt)){
-                // Redirect to login page
+                // Zur Login-Seite weiterleiten
                 header("location: login.php");
             } else{
-                echo "Oops! Something went wrong. Please try again later.";
+                echo "Hoppla! Etwas ist schiefgelaufen, probiere es später erneut.";
             }
 
-            // Close statement
+            // Statement schließen
             mysqli_stmt_close($stmt);
         }
     }
     
-    // Close connection
+    // Verbindung schließen
     mysqli_close($link);
 }
 ?>
