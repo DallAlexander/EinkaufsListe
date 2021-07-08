@@ -82,12 +82,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 echo "Oops! Something went wrong. Please try again later.";
             }
 
-            // Close statement
+            // Statement schließen
             mysqli_stmt_close($stmt);
         }
     }
     
-    // Close connection
+    // Verbindung schließen
     mysqli_close($link);
 }
 ?>
