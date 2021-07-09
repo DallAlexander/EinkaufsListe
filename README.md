@@ -24,7 +24,7 @@
 
 <!-- Über das Projekt -->
 ## Über das Projekt
-Diese Projektarbeit wurde als Prüfung für die Veranstaltung Internet Basistechnologien an der Westfälischen Hochschule von Marek Brüninghoff, Fynn Aldenkirchs, Alexander Eisner und Alexander Dall entwickelt.  
+Diese Projektarbeit wurde als Prüfung für die Veranstaltung Internet Basistechnologien an der Westfälischen Hochschule von Marek Brüning, Fynn Aldenkirchs, Alexander Eisner und Alexander Dall entwickelt.  
 Im Zuge der Ausarbeitung haben wir uns für die Entwicklung einer Einkaufsliste entschieden. Diese stellt Funktionen, wie das Hinzufügen, Löschen und Abhaken von Artikeln, bereit. Für den sicheren Zugriff auf die Liste haben wir ein Login-System implementiert, womit man sich registrieren und einloggen kann. Die Daten werden in einem MySQL-Datenbankmanagementsytem gespeichert.
 Sofern erreichbar wird das Projekt über 000Webhost gehostet, das über folgenden Link aufzurufen ist:
 ```
