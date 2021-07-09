@@ -9,7 +9,7 @@ $username_err = $password_err = $confirm_password_err = "";
 // Verarbeitung von Formulardaten beim Absenden des Formulars 
 if($_SERVER["REQUEST_METHOD"] == "POST"){
  
-    // Validate username
+    // Benutzername überprüfen
     if(empty(trim($_POST["username"]))){
         $username_err = "Bitte Benutzername eintragen.";
     } elseif(!preg_match('/^[a-zA-Z0-9_]+$/', trim($_POST["username"]))){
@@ -36,7 +36,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     $username = trim($_POST["username"]);
                 }
             } else{
-                echo "Oops! Something went wrong. Please try again later.";
+                echo "Hoppla! Etwas ist schiefgelaufen. Probiere es später erneut.";
             }
 
             // Statement schließen
@@ -59,7 +59,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     } else{
         $confirm_password = trim($_POST["confirm_password"]);
         if(empty($password_err) && ($password != $confirm_password)){
-            $confirm_password_err = "Password did not match.";
+            $confirm_password_err = "Passwörter stimmen nicht überein.";
         }
     }
     
@@ -75,7 +75,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             
             // Parameter setzen
             $param_username = $username;
-            $param_password = password_hash($password, PASSWORD_DEFAULT); // Creates a password hash
+            $param_password = password_hash($password, PASSWORD_DEFAULT); // Passwort hashen
             
             // Versuch das Prepared-Statement abzusetzen
             if(mysqli_stmt_execute($stmt)){

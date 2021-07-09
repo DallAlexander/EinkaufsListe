@@ -5,7 +5,7 @@ session_start();
 
 // Überprüfen ob der Benutzer schon eingeleggt ist, wenn ja dann zur Willkommen-Seite weiterleiten
 if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
-    header("location: welcome.php");
+    header("location: index.php");
     exit;
 }
  
@@ -68,7 +68,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             $_SESSION["username"] = $username;                            
                             
                             // Weiterleitung zur Willkommen-Seite
-                            header("location: welcome.php");
+                            header("location: index.php");
                         } else{
                             // Wenn das Passwort nicht stimmt, Fehlermeldung anzeigen
                             $login_err = "Ungültiger Benutzername oder Passowrt.";
@@ -79,7 +79,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     $login_err = "Ungültiger Benutzername oder Passowrt";
                 }
             } else{
-                echo "Oops! Something went wrong. Please try again later.";
+                echo "Hoppla! Etwas ist schief gelaufen. Probiere es später erneut.";
             }
 
             // Statement schließen
