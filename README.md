@@ -33,7 +33,6 @@ Sofern erreichbar wird das Projekt über 000Webhost gehostet, das über folgende
 
 ### Verwendete Programmiersprachen
 Grundsätzlich wurde unsere Einkaufsliste angesichts der Anforderungen mit den Programmiersprachen HTML, JavaScript, CSS, PHP und SQL umgesetzt. Benutzt wurden folgende Frameworks:
-* [Bootstrap](https://getbootstrap.com)
 * [Google Developer API](https://developers.google.com/fonts/docs/developer_api/)
 
 <!-- GETTING STARTED -->

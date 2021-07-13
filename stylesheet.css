@@ -58,19 +58,45 @@ h2{
     background-color: lightgray;
 }
 
-
 .input {
-    width: 70%;
-    margin-left: 5%;
+    display: block;
+    width: auto;
+    margin: 0 auto;
+    margin-top: 2%;
     border: 0;
     border-bottom: 2px solid;
     border-color: rgb(33, 103, 182);
     outline: 0;
     font-size: 1.3rem;
     color: rgb(131, 131, 131);
-    padding: 7px 0;
+    padding: 7px;
     background: transparent;
     transition: border-color 0.2s;
+}
+
+.inputAnzahl{
+    display: inline;
+    width: 10%;
+    margin-right: 2%;
+    margin-left: 2%;
+}
+
+.inputBezeichnung{
+    display: inline;
+    width: 75%;
+}
+
+.btnSubmit{
+    margin: 0 auto;
+    margin-top: 2%;
+    border-radius: 5pt;
+    text-align: center;
+    background-color: rgb(33, 103, 182);
+    padding: 5pt 20pt;
+    border: 0;
+    font-size: 1.3rem;
+    color: aliceblue;
+    display: block;
 }
 
 .btnAdd{
@@ -83,12 +109,13 @@ h2{
     color: rgb(33, 103, 182);
 }
 
-.checked {
-    text-decoration: line-through;
+.feedback{
+    text-align: center;
+    color: rgb(192, 112, 128);
 }
 
-#itemQnty {
-    width: 60px;
+.checked {
+    text-decoration: line-through;
 }
 
 .textItem {
