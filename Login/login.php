@@ -71,12 +71,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             header("location: index.php");
                         } else{
                             // Wenn das Passwort nicht stimmt, Fehlermeldung anzeigen
-                            $login_err = "Ungültiger Benutzername oder Passowrt.";
+                            $login_err = "Ungültiger Benutzername oder Passwort.";
                         }
                     }
                 } else{
                     // Wenn der Benutzer nicht existiert, Fehlermeldung anzeigen
-                    $login_err = "Ungültiger Benutzername oder Passowrt";
+                    $login_err = "Ungültiger Benutzername oder Passwort";
                 }
             } else{
                 echo "Hoppla! Etwas ist schief gelaufen. Probiere es später erneut.";
@@ -97,7 +97,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 <head>
     <meta charset="UTF-8">
     <title>Anmeldung</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="stylesheet.css">
     <style>
         body{ font: 14px sans-serif; }
@@ -107,6 +106,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 <body>
     <div class="bigElement heading">
         <h1>Login</h1>
+    </div>
+    <div class="bigElement">
         <h2>Bitte gebe deine Anmeldedaten an, um dich anzumelden</h2>
 
         <?php 
@@ -117,17 +118,15 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
             <div class="form-group">
-                <label>Benutzername</label>
-                <input type="text" name="username" class="form-control <?php echo (!empty($username_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $username; ?>">
-                <span class="invalid-feedback"><?php echo $username_err; ?></span>
+                <p class="feedback"><?php echo $username_err; ?></p>
+                <input type="text" name="username" placeholder="Benutzername" class="input <?php echo (!empty($username_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $username; ?>">
             </div>    
             <div class="form-group">
-                <label>Passwort</label>
-                <input type="password" name="password" class="form-control <?php echo (!empty($password_err)) ? 'is-invalid' : ''; ?>">
-                <span class="invalid-feedback"><?php echo $password_err; ?></span>
+                <p class="feedback"><?php echo $password_err; ?></p>
+                <input type="password" name="password" placeholder="Passwort" class="input <?php echo (!empty($password_err)) ? 'is-invalid' : ''; ?>, ">
             </div>
             <div class="form-group">
-                <input type="submit" class="btn btn-primary" value="Login">
+                <input type="submit" class="btnSubmit" value="Login">
             </div>
             <p>Du bist noch nicht registriert? <a href="register.php">Registriere dich jetzt</a>.</p>
         </form>

@@ -11,12 +11,12 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 
 $GLOBALS['servername'] = "localhost";
 $GLOBALS['username'] = "root";
-$GLOBALS['password'] = "";
+$GLOBALS['password'] = "Passwort123!";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   try {
     //Verbindung zur Datenbank herstellen
-    $conn = new PDO("mysql:host=" . $GLOBALS['servername'] . ";port=3306;dbname=demo", $GLOBALS['username'], $GLOBALS['password']);
+    $conn = new PDO("mysql:host=" . $GLOBALS['servername'] . ";port=3306;dbname=einkaufsliste", $GLOBALS['username'], $GLOBALS['password']);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     if (isset($_POST['add'])) {
@@ -76,8 +76,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   </div>
   <div class="bigElement">
     <h2> Bitte Wert eingeben</h2>
-    <input type="number" id="itemQnty" class="input" min="1" max="99" value="1" placeholder="Anzahl">
-    <input type="text" id="Input1" class="input" maxlength="40">
+    <input type="number" id="itemQnty" class="input inputAnzahl" min="1" max="99" value="1" placeholder="Anzahl">
+    <input type="text" id="Input1" placeholder="Bezeichnung" class="input inputBezeichnung" maxlength="40">
     <button id="btn1" class="btnAdd" onclick="addItem()">+</button>
   </div>
   <div class="bigElement">
@@ -96,7 +96,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         try {
           //Verbindung zur Datenbank herstellen
-          $conn = new PDO("mysql:host=" . $GLOBALS['servername'] . ";port=3306;dbname=demo", $GLOBALS['username'], $GLOBALS['password']);
+          $conn = new PDO("mysql:host=" . $GLOBALS['servername'] . ";port=3306;dbname=einkaufsliste", $GLOBALS['username'], $GLOBALS['password']);
           // set the PDO error mode to exception
           $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
