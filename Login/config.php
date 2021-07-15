@@ -1,6 +1,6 @@
 <?php
 /* Datenbank Verbindung */
-define('DB_SERVER', 'localhost');
+define('DB_SERVER', 'localhost');       //Connection parameter 
 define('DB_USERNAME', 'root');
 define('DB_PASSWORD', '');
 define('DB_NAME', 'demo');
@@ -10,6 +10,6 @@ $link = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
  
 // Verbindung überprüfen
 if($link === false){
-    die("Fehler: Verbindung nicht möglich " . mysqli_connect_error());
+    die("Fehler: Verbindung nicht möglich " . mysqli_connect_error());          //error weitergeben
 }
 ?>
