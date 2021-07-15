@@ -28,7 +28,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     
     // Überprüfen, ob das Passwort-Feld leer ist
     if(empty(trim($_POST["password"]))){
-        $password_err = "Bitte Passwort eingeben.";
+        $password_err = "Bitte Passwort eingeben.";      //Änhliches Vorgehen wie beim username 
     } else{
         $password = trim($_POST["password"]);
     }
@@ -36,7 +36,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     // Zugang überprüfen
     if(empty($username_err) && empty($password_err)){
         // Select-Statement vorbereiten
-        $sql = "SELECT id, username, password FROM users WHERE username = ?";
+        $sql = "SELECT id, username, password FROM users WHERE username = ?";           //prepared Statement nutzen 
         
         if($stmt = mysqli_prepare($link, $sql)){
             // Variablen als Parameter an das Select-Statement binden
@@ -96,7 +96,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Anmeldung</title>
+    <title>Anmeldung</title>            
     <link rel="stylesheet" href="stylesheet.css">
     <style>
         body{ font: 14px sans-serif; }
